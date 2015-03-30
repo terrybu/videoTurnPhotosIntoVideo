@@ -120,10 +120,15 @@
     [data writeToFile:filePath atomically:YES];
 }
 
-- (IBAction) loadImagesFromSavedDirectoryAndCreateMovieOutOfStills:(id)sender
+- (IBAction) produceVideo
 {
     [SVProgressHUD show];
     
+    NSMutableArray *frames = [self loadImagesFromSavedDirectoryIntoArray];
+    [self createMovieOutofStillPhotos:frames];
+}
+
+- (NSMutableArray *) loadImagesFromSavedDirectoryIntoArray {
     NSMutableArray *frames = [[NSMutableArray alloc] init];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
@@ -136,10 +141,14 @@
     }
     [frames setObject:[UIImage imageNamed:@"sun"] atIndexedSubscript:3]; //interjecting with a random image in the middle of video
     
-    UIImage *image = frames[0];
+    return frames;
+}
+
+- (void) createMovieOutofStillPhotos: (NSMutableArray *) arrayOfFrames {
+    UIImage *image = arrayOfFrames[0];
     NSDictionary *settings = [CEMovieMaker videoSettingsWithCodec:AVVideoCodecH264 withWidth:image.size.width andHeight:image.size.height];
     self.movieMaker = [[CEMovieMaker alloc] initWithSettings:settings];
-    [self.movieMaker createMovieFromImages:[frames copy] withCompletion:^(NSURL *fileURL){
+    [self.movieMaker createMovieFromImages:[arrayOfFrames copy] withCompletion:^(NSURL *fileURL){
         dispatch_async(dispatch_get_main_queue(), ^{
             [SVProgressHUD dismiss];
             

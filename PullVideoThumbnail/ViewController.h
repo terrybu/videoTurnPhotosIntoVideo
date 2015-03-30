@@ -11,16 +11,13 @@
 @interface ViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *thumbnailImageView;
-
 @property (weak, nonatomic) IBOutlet UILabel *stillsStatusLabel;
-
 @property (weak, nonatomic) IBOutlet UIButton *produceVideoButton;
 
-- (IBAction) loadImagesFromSavedDirectoryAndCreateMovieOutOfStills:(id)sender;
-
-- (IBAction)playCompletedVideo:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *playBarButton;
+- (IBAction)playCompletedVideo:(id)sender;
+
 
 @end
 

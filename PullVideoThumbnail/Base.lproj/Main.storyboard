@@ -23,7 +23,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="loadImagesFromSavedDirectoryAndCreateMovieOutOfStills:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s5q-9T-Pxr"/>
+                                    <action selector="produceVideo" destination="BYZ-38-t0r" eventType="touchUpInside" id="4Y3-Cn-RaE"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VlG-1t-aLr">
