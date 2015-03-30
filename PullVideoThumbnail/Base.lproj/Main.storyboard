@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QPr-L7-faM">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Dm-np-va2">
+                                <rect key="frame" x="181" y="326" width="238" height="30"/>
+                                <state key="normal" title="PRODUCE VIDEO OUT OF STILLS">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loadImagesFromSavedDirectoryAndCreateMovieOutOfStills:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s5q-9T-Pxr"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VlG-1t-aLr">
+                                <rect key="frame" x="200" y="114" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="VlG-1t-aLr" secondAttribute="height" multiplier="1:1" id="fGu-b4-S2s"/>
+                                    <constraint firstAttribute="width" constant="200" id="pyC-bg-Tiz"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="stillPhotoProcessingStatusLabel" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4pk-sW-aRE" userLabel="stillPhotoProcessingStatusLabel">
+                                <rect key="frame" x="176" y="85" width="248" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="262" id="Nmp-s0-KxU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Nmp-s0-KxU"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="8Dm-np-va2" secondAttribute="centerY" id="EH9-pq-Pja"/>
+                            <constraint firstAttribute="centerX" secondItem="VlG-1t-aLr" secondAttribute="centerX" id="ICo-WF-o1Y"/>
+                            <constraint firstItem="8Dm-np-va2" firstAttribute="top" secondItem="VlG-1t-aLr" secondAttribute="bottom" constant="12" id="bTR-VG-rET"/>
+                            <constraint firstAttribute="centerX" secondItem="VlG-1t-aLr" secondAttribute="centerX" id="eNT-nE-HVw"/>
+                            <constraint firstAttribute="centerX" secondItem="8Dm-np-va2" secondAttribute="centerX" id="fo2-l3-ePj"/>
+                            <constraint firstItem="4pk-sW-aRE" firstAttribute="centerX" secondItem="VlG-1t-aLr" secondAttribute="centerX" id="mbo-nH-TAY"/>
+                            <constraint firstItem="VlG-1t-aLr" firstAttribute="top" secondItem="4pk-sW-aRE" secondAttribute="bottom" constant="8" symbolic="YES" id="pbL-IJ-1j6"/>
+                            <constraint firstItem="VlG-1t-aLr" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="tbX-uI-djH"/>
+                            <constraint firstItem="4pk-sW-aRE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="21" id="yVq-mx-vza"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="ICo-WF-o1Y"/>
+                                <exclude reference="EH9-pq-Pja"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="4I9-JT-4b2">
+                        <barButtonItem key="leftBarButtonItem" systemItem="play" id="UFU-a9-ydc">
+                            <connections>
+                                <action selector="playCompletedVideo:" destination="BYZ-38-t0r" id="wqh-bc-U55"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="camera" id="ENo-YX-Kzt">
+                            <connections>
+                                <action selector="showImagePickerController" destination="BYZ-38-t0r" id="XZR-zR-hzg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="playBarButton" destination="UFU-a9-ydc" id="d8L-6F-Y9T"/>
+                        <outlet property="produceVideoButton" destination="8Dm-np-va2" id="G5q-xk-8l2"/>
+                        <outlet property="stillsStatusLabel" destination="4pk-sW-aRE" id="XSa-M4-gJV"/>
+                        <outlet property="thumbnailImageView" destination="VlG-1t-aLr" id="Tox-uH-GVq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1122" y="-416"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qlZ-SX-ZUi">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QPr-L7-faM" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="suU-Ox-Twu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Ccf-de-fmI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jdj-Yl-bnO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="304" y="-416"/>
+        </scene>
+    </scenes>
+</document>
