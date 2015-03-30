@@ -153,6 +153,7 @@
             [SVProgressHUD dismiss];
             
             self.playBarButton.enabled = YES;
+            self.produceVideoButton.hidden = YES;
         });
         [self viewMovieAtUrl:fileURL];
         videoCompletedFileURL = fileURL;
