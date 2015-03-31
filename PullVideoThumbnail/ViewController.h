@@ -13,11 +13,11 @@
 @property (weak, nonatomic) IBOutlet UIImageView *thumbnailImageView;
 @property (weak, nonatomic) IBOutlet UILabel *stillsStatusLabel;
 @property (weak, nonatomic) IBOutlet UIButton *produceVideoButton;
-
-
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *playBarButton;
 - (IBAction)playCompletedVideo:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIButton *saveVideoButton;
+- (IBAction) saveVideo;
 
 @end
 

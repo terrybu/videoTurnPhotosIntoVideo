@@ -39,7 +39,7 @@
                                     <constraint firstAttribute="width" constant="262" id="Nmp-s0-KxU"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -47,16 +47,27 @@
                                     </mask>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QPj-Tf-2Cm">
+                                <rect key="frame" x="262" y="449" width="77" height="30"/>
+                                <state key="normal" title="Save Video">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveVideo" destination="BYZ-38-t0r" eventType="touchUpInside" id="hMl-Q5-Md3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="8Dm-np-va2" secondAttribute="centerY" id="EH9-pq-Pja"/>
                             <constraint firstAttribute="centerX" secondItem="VlG-1t-aLr" secondAttribute="centerX" id="ICo-WF-o1Y"/>
+                            <constraint firstAttribute="centerX" secondItem="QPj-Tf-2Cm" secondAttribute="centerX" id="Tbz-hb-IBb"/>
                             <constraint firstItem="8Dm-np-va2" firstAttribute="top" secondItem="VlG-1t-aLr" secondAttribute="bottom" constant="12" id="bTR-VG-rET"/>
                             <constraint firstAttribute="centerX" secondItem="VlG-1t-aLr" secondAttribute="centerX" id="eNT-nE-HVw"/>
                             <constraint firstAttribute="centerX" secondItem="8Dm-np-va2" secondAttribute="centerX" id="fo2-l3-ePj"/>
                             <constraint firstItem="4pk-sW-aRE" firstAttribute="centerX" secondItem="VlG-1t-aLr" secondAttribute="centerX" id="mbo-nH-TAY"/>
                             <constraint firstItem="VlG-1t-aLr" firstAttribute="top" secondItem="4pk-sW-aRE" secondAttribute="bottom" constant="8" symbolic="YES" id="pbL-IJ-1j6"/>
+                            <constraint firstItem="QPj-Tf-2Cm" firstAttribute="top" secondItem="8Dm-np-va2" secondAttribute="bottom" constant="93" id="r2q-xM-JfE"/>
                             <constraint firstItem="VlG-1t-aLr" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="tbX-uI-djH"/>
                             <constraint firstItem="4pk-sW-aRE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="21" id="yVq-mx-vza"/>
                         </constraints>
@@ -82,6 +93,7 @@
                     <connections>
                         <outlet property="playBarButton" destination="UFU-a9-ydc" id="d8L-6F-Y9T"/>
                         <outlet property="produceVideoButton" destination="8Dm-np-va2" id="G5q-xk-8l2"/>
+                        <outlet property="saveVideoButton" destination="QPj-Tf-2Cm" id="0LA-x6-tzR"/>
                         <outlet property="stillsStatusLabel" destination="4pk-sW-aRE" id="XSa-M4-gJV"/>
                         <outlet property="thumbnailImageView" destination="VlG-1t-aLr" id="Tox-uH-GVq"/>
                     </connections>

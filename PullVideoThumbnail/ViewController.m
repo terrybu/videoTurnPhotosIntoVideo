@@ -13,12 +13,14 @@
 #import "CEMovieMaker.h"
 #import "SVProgressHUD.h"
 
-@import MediaPlayer; //Crucial import makes MPPlayer code work below
+@import MediaPlayer;
+//Crucial import makes MPPlayer code work below
 
 @interface ViewController () {
     UIImage *thumbnail;
     Float64 limit;
     NSURL *videoCompletedFileURL;
+    ALAssetsLibrary *assetsLibrary;
 }
 
 @property (nonatomic, strong) CEMovieMaker *movieMaker;
@@ -37,7 +39,8 @@
     self.stillsStatusLabel.text = @"";
     self.playBarButton.enabled = NO;
     self.produceVideoButton.hidden = YES;
-    
+    self.saveVideoButton.hidden = YES;
+
 }
 
 
@@ -71,9 +74,9 @@
         //validate that it's a video
         if (CFStringCompare ((__bridge_retained CFStringRef)mediaType, kUTTypeMovie, 0) == kCFCompareEqualTo) {
             NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
-            ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+            assetsLibrary = [[ALAssetsLibrary alloc] init];
             //import <AssetsLibrary> for this
-            [library assetForURL:videoURL resultBlock:^(ALAsset *asset) {
+            [assetsLibrary assetForURL:videoURL resultBlock:^(ALAsset *asset) {
                 //this is the block to use with your asset
                 //whatever you want to perform to your asset, you should do so in this block
                 //user might have to say yes to permission. If denied, failure block will get called
@@ -139,7 +142,13 @@
         UIImage* image = [UIImage imageWithContentsOfFile:filePath];
         [frames addObject:image];
     }
-    [frames setObject:[UIImage imageNamed:@"sun"] atIndexedSubscript:3]; //interjecting with a random image in the middle of video
+    
+    [frames setObject:[UIImage imageNamed:@"sun"] atIndexedSubscript:3];
+    [frames setObject:[UIImage imageNamed:@"sun"] atIndexedSubscript:4];
+    [frames setObject:[UIImage imageNamed:@"sun"] atIndexedSubscript:10];
+    [frames setObject:[UIImage imageNamed:@"sun"] atIndexedSubscript:11];
+
+    //interjecting with a random image in the middle of video
     
     return frames;
 }
@@ -154,6 +163,9 @@
             
             self.playBarButton.enabled = YES;
             self.produceVideoButton.hidden = YES;
+            self.saveVideoButton.hidden = NO;
+            
+            self.stillsStatusLabel.text = @"A new video was successfully created from our extracted frames";
         });
         [self viewMovieAtUrl:fileURL];
         videoCompletedFileURL = fileURL;
@@ -177,6 +189,33 @@
     [playerController.moviePlayer prepareToPlay];
     [playerController.moviePlayer play];
     [self.view addSubview:playerController.view];
+}
+
+- (IBAction) saveVideo {
+    [SVProgressHUD show];
+    
+    if (videoCompletedFileURL) {
+        UISaveVideoAtPathToSavedPhotosAlbum([videoCompletedFileURL relativePath], self, @selector(video:didFinishSavingWithError:contextInfo:), nil);
+    }
+    
+    //another way to save video to your photos album
+//    if (videoCompletedFileURL && [assetsLibrary videoAtPathIsCompatibleWithSavedPhotosAlbum:videoCompletedFileURL]) {
+//        [assetsLibrary writeVideoAtPathToSavedPhotosAlbum:videoCompletedFileURL completionBlock:^(NSURL *assetURL, NSError *error) {
+//            
+//        }];
+//    }
+    
+    [SVProgressHUD dismiss];
+}
+
+-(void)video:(NSString *)videoPath didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
+    if (error) {
+        NSLog(@"Finished with error: %@", error);
+        return;
+    }
+    NSLog(@"we finished saving video to your album");
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Saved Video" message:@"Your newly created video got saved to Photos" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alertView show];
 }
 
 
